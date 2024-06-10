@@ -1,0 +1,99 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "configure",
+            "command": "/bin/bash",
+            "args": ["-c", "mkdir -p build && cd build && cmake .."],
+            "options": {"cwd": "${workspaceFolder}"},
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "detail": "Configure project."
+        },
+        {
+            "type": "cppbuild",
+            "label": "configure (debug)",
+            "command": "/bin/bash",
+            "args": ["-c", "mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug .."],
+            "options": {"cwd": "${workspaceFolder}"},
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "detail": "Configure project."
+        },
+        {
+            "type": "cppbuild",
+            "label": "make build",
+            "command": "make",
+            "args": ["-j4", "-C", "build", "-f", "Makefile"],
+            "options": {"cwd": "${workspaceFolder}"},
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Build project."
+        },
+        {
+            "type": "cppbuild",
+            "label": "make flash",
+            "command": "make",
+            "args": ["flash", "-C", "build", "-f", "Makefile"],
+            "dependsOn": [ "make build" ],
+            "options": {"cwd": "${workspaceFolder}"},
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "detail": "Flash microcontroller."
+        },
+        {
+            "type": "cppbuild",
+            "label": "make pflash",
+            "command": "make",
+            "args": ["pflash", "-C", "build", "-f", "Makefile"],
+            "dependsOn": [ "make build" ],
+            "options": {"cwd": "${workspaceFolder}"},
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "detail": "Flash microcontroller with picotool."
+        },
+        {
+            "type": "cppbuild",
+            "label": "make debug",
+            "command": "make",
+            "args": ["debug", "-C", "build", "-f", "Makefile"],
+            "dependsOn": [ "make flash" ],
+            "options": {"cwd": "${workspaceFolder}"},
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "detail": "Flash microcontroller."
+        },
+        {
+            "type": "cppbuild",
+            "label": "make clean",
+            "command": "make",
+            "args": ["clean", "-C", "build", "-f", "Makefile"],
+            "options": {"cwd": "${workspaceFolder}"},
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "detail": "Clean project."
+        }
+    ],
+    "version": "2.0.0"
+}

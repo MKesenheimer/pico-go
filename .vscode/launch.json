@@ -1,0 +1,188 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    // And https://wiki.segger.com/J-Link_Visual_Studio_Code
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "GDB (attach)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/${workspaceFolderBasename}.elf",
+            "args": [],
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "miDebuggerPath": "/Applications/ARM/bin/arm-none-eabi-gdb",
+            "MIMode": "gdb",
+            "postRemoteConnectCommands": [
+                {
+                    "description": "Target Remote Device on Port 3333",
+                    "text": "target extended-remote localhost:3333",
+                    "ignoreFailures": false
+                },
+                {
+                    "description": "Hard Reset and Immediately Halt",
+                    "text": "monitor reset init",
+                    "ignoreFailures": false
+                },
+                {
+                    "description": "Shutdown GDB Server on GDB Detach",
+                    "text": "monitor [target current] configure -event gdb-detach { shutdown }",
+                    "ignoreFailures": false
+                },
+            ],
+            "stopAtEntry": true,
+        },
+        {
+            "name": "GDB",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/${workspaceFolderBasename}.elf",
+            "args": [],
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "miDebuggerPath": "/Applications/ARM/bin/arm-none-eabi-gdb",
+            "MIMode": "gdb",
+            "debugServerPath": "/opt/local/bin/openocd",
+            "debugServerArgs": "-f interface/cmsis-dap.cfg -f target/rp2040.cfg -c \"adapter speed 5000\"",
+            "serverStarted": "Listening",
+            "filterStderr": true,
+	        "filterStdout": false,
+            "logging": {
+                "moduleLoad": true,
+                "trace": true,
+                "engineLogging": true,
+                "programOutput": true,
+                "exceptions": false
+            },
+	        "launchCompleteCommand": "None",
+            "postRemoteConnectCommands": [
+                {
+                    "description": "Target Remote Device on Port 3333",
+                    "text": "target extended-remote localhost:3333",
+                    "ignoreFailures": false
+                },
+                {
+                    "description": "Hard Reset and Immediately Halt",
+                    "text": "monitor reset init",
+                    "ignoreFailures": false
+                },
+                {
+                    "description": "Shutdown GDB Server on GDB Detach",
+                    "text": "monitor [target current] configure -event gdb-detach { shutdown }",
+                    "ignoreFailures": false
+                },
+            ],
+            "stopAtEntry": true,
+            "preLaunchTask": "make flash",
+        },
+        {
+            "name": "LLDB (attach)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/${workspaceFolderBasename}.elf",
+            "args": [],
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "postRemoteConnectCommands": [
+                {
+                    "description": "Target Remote Device on Port 3333",
+                    "text": "gdb-remote 3333",
+                    "ignoreFailures": false
+                },
+                {
+                    "description": "Hard Reset and Immediately Halt",
+                    "text": "process plugin packet monitor reset",
+                    "ignoreFailures": false
+                },
+                {
+                    "description": "Shutdown GDB Server on GDB Detach",
+                    "text": "monitor [target current] configure -event gdb-detach { shutdown }",
+                    "ignoreFailures": false
+                },
+            ],
+            "stopAtEntry": true,
+        },
+        {
+            "name": "LLDB",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/${workspaceFolderBasename}.elf",
+            "args": [],
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "debugServerPath": "/opt/local/bin/openocd",
+            "debugServerArgs": "-f interface/cmsis-dap.cfg -f target/rp2040.cfg -c \"adapter speed 5000\"",
+            "serverStarted": "Listening",
+            "filterStderr": true,
+	        "filterStdout": false,
+            "logging": {
+                "moduleLoad": true,
+                "trace": true,
+                "engineLogging": true,
+                "programOutput": true,
+                "exceptions": false
+            },
+	        "launchCompleteCommand": "None",
+            "postRemoteConnectCommands": [
+                {
+                    "description": "Target Remote Device on Port 3333",
+                    "text": "gdb-remote 3333",
+                    "ignoreFailures": false
+                },
+                {
+                    "description": "Hard Reset and Immediately Halt",
+                    "text": "process plugin packet monitor reset",
+                    "ignoreFailures": false
+                },
+                {
+                    "description": "Shutdown GDB Server on GDB Detach",
+                    "text": "monitor [target current] configure -event gdb-detach { shutdown }",
+                    "ignoreFailures": false
+                },
+            ],
+            "stopAtEntry": true,
+            "preLaunchTask": "make flash",
+        },
+        {
+            "name": "Build",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/${workspaceFolderBasename}.elf",
+            "args": [],
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "MIMode": "lldb",
+            "preLaunchTask": "make build",
+        },
+        {
+            "name": "Flash",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/${workspaceFolderBasename}.elf",
+            "args": [],
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "MIMode": "lldb",
+            "preLaunchTask": "make flash",
+        },
+        {
+            "name": "PFlash",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/${workspaceFolderBasename}.elf",
+            "args": [],
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "MIMode": "lldb",
+            "preLaunchTask": "make pflash",
+        },
+    ]
+}
