@@ -22,13 +22,16 @@ add_executable(${CMAKE_PROJECT_NAME}
 )
 
 pico_generate_pio_header(${CMAKE_PROJECT_NAME} 
+    ${CMAKE_CURRENT_LIST_DIR}/st7789_lcd.pio
     ${CMAKE_CURRENT_LIST_DIR}/spi.pio
 )
 
 target_sources(${CMAKE_PROJECT_NAME}
     PUBLIC
-        ${CMAKE_CURRENT_LIST_DIR}/tr-sensor.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/trsensor.cpp
         ${CMAKE_CURRENT_LIST_DIR}/motor.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/bluetooth.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/gfx.cpp
 )
 
 target_include_directories(${CMAKE_PROJECT_NAME}
@@ -38,14 +41,14 @@ target_include_directories(${CMAKE_PROJECT_NAME}
 
 target_link_libraries(${CMAKE_PROJECT_NAME}
   pico_stdlib
-  #hardware_i2c
+  hardware_uart
   hardware_pio
   hardware_spi
   hardware_pwm
 )
 
 pico_enable_stdio_usb(${CMAKE_PROJECT_NAME} 1)
-pico_enable_stdio_uart(${CMAKE_PROJECT_NAME} 0)
+#pico_enable_stdio_uart(${CMAKE_PROJECT_NAME} 1)
 pico_add_extra_outputs(${CMAKE_PROJECT_NAME})
 
 # add flash target (make flash)

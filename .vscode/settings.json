@@ -73,6 +73,11 @@
         "format": "cpp",
         "cinttypes": "cpp",
         "__memory": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "__mutex_base": "cpp",
+        "condition_variable": "cpp",
+        "semaphore": "cpp",
+        "thread": "cpp",
+        "stop_token": "cpp"
     }
 }

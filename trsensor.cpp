@@ -1,6 +1,6 @@
 #include <iostream>
 #include "pico/stdlib.h"
-#include "tr-sensor.h"
+#include "trsensor.h"
 #include "helper.h"
 #include "spi.pio.h"
 #include "pico/binary_info.h"
@@ -93,7 +93,7 @@ const std::array<uint16_t, NUM_SENSORS> tr_sensor::read_calibrated() {
             value = 0;
         else if (value > 1000)
             value = 1000;
-        sensor_values[i] = int(value);
+        sensor_values[i] = uint16_t(value);
     }
     return sensor_values;
 }
