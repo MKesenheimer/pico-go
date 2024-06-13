@@ -151,8 +151,7 @@ inline void gfx::transform(int &x, int &y) {
         if (_swap_xy) swap(x, y);
         if (_mirror_x) mirror_x(x);
         if (_mirror_y) mirror_x(y);
-    } else 
-    {
+    } else {
         if (_mirror_x) mirror_x(x);
         if (_mirror_y) mirror_x(y);
         if (_swap_xy) swap(x, y);
