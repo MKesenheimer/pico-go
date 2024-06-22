@@ -21,10 +21,14 @@ add_executable(${CMAKE_PROJECT_NAME}
     main.cpp
 )
 
-pico_generate_pio_header(${CMAKE_PROJECT_NAME} 
+pico_generate_pio_header(${CMAKE_PROJECT_NAME}
     ${CMAKE_CURRENT_LIST_DIR}/st7789_lcd.pio
+)
+
+pico_generate_pio_header(${CMAKE_PROJECT_NAME}
     ${CMAKE_CURRENT_LIST_DIR}/spi.pio
 )
+
 
 target_sources(${CMAKE_PROJECT_NAME}
     PUBLIC
