@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <numeric>
+#include <ctime>
 #include "pico/stdlib.h"
 #include "pico/time.h"
 #include "hardware/pio.h"
